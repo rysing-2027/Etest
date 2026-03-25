@@ -32,7 +32,7 @@ export default function Login() {
         {Array.from({ length: 60 }).map((_, i) => (
           <div
             key={i}
-            className="w-2 sm:w-3 bg-gradient-to-t from-blue-500 via-purple-500 to-cyan-400 rounded-t-full animate-audio-bar"
+            className="w-2 sm:w-3 bg-gradient-to-t from-green-500 via-blue-500 to-cyan-400 rounded-t-full animate-audio-bar"
             style={{
               animationDelay: `${i * 0.1}s`,
               animationDuration: `${1.2 + Math.random() * 0.8}s`,
