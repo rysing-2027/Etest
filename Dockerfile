@@ -12,6 +12,10 @@ RUN npm run build
 FROM python:3.11-slim
 WORKDIR /app
 
+# 代理配置（构建时传入）
+ARG HTTP_PROXY
+ARG HTTPS_PROXY
+
 COPY backend/requirements.txt ./backend/
 RUN pip install --no-cache-dir -r backend/requirements.txt
 

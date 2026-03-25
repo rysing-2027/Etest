@@ -2,7 +2,11 @@
 # 简化版：单容器部署
 services:
   app:
-    build: .
+    build:
+      context: .
+      args:
+        - HTTP_PROXY=${HTTP_PROXY:-}
+        - HTTPS_PROXY=${HTTPS_PROXY:-}
     container_name: etest
     restart: unless-stopped
     ports:
