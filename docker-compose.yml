@@ -13,3 +13,5 @@ services:
     environment:
       - ADMIN_USER_ID=${ADMIN_USER_ID:-admin}
       - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin123}
+      - HTTP_PROXY=${HTTP_PROXY:-}
+      - HTTPS_PROXY=${HTTPS_PROXY:-}
