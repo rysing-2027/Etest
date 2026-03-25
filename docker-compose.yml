@@ -1,31 +1,15 @@
-# Etest：Timekettle 翻译引擎测评系统
-# nginx 反向代理 → FastAPI 后端（含前端静态文件）
-# 由共享网关经 rysai_shared 直连
+# Etest：Timekettle 翻译引擎评测系统
+# 简化版：单容器部署
 services:
   app:
     build: .
+    container_name: etest
     restart: unless-stopped
+    ports:
+      - "8000:8000"
     volumes:
       - ./data/db:/app/backend/db
       - ./data/uploads:/app/backend/uploads
     environment:
       - ADMIN_USER_ID=${ADMIN_USER_ID:-admin}
       - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin123}
-    networks:
-      - default
-
-  nginx:
-    image: nginx:alpine
-    restart: unless-stopped
-    volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-    depends_on:
-      - app
-    networks:
-      - default
-      - rysai_shared
-
-networks:
-  rysai_shared:
-    external: true
-
