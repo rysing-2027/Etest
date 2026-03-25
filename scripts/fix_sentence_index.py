@@ -1,9 +1,10 @@
 """
 修复 sentence_index 不连续的问题
-在 Etest 目录下运行: python fix_sentence_index.py
+在 Etest 目录下运行: python scripts/fix_sentence_index.py
 """
 import sys
-sys.path.insert(0, '.')
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from backend.models import Sentence, LanguagePair
 from backend.database import SessionLocal

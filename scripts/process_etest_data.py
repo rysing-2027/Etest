@@ -3,6 +3,8 @@
 Etest数据处理脚本：
 1. 从result文件夹提取json文件生成excel对比表
 2. 将pcm音频文件复制到uploads对应文件夹
+
+用法: python scripts/process_etest_data.py
 """
 
 import json
@@ -11,13 +13,11 @@ import shutil
 from pathlib import Path
 import pandas as pd
 
-# 路径配置 - 使用绝对路径
-BASE_DIR = Path(r"C:\Users\ecii\OneDrive\Desktop\Rys-AI\Etest\data")
-RESULT_DIR = BASE_DIR / "result"
-UPLOADS_DIR = BASE_DIR / "uploads"
-
-# 切换到正确的目录
-os.chdir(str(BASE_DIR.parent.parent))
+# 路径配置
+PROJECT_DIR = Path(__file__).parent.parent
+DATA_DIR = PROJECT_DIR / "data"
+RESULT_DIR = DATA_DIR / "result"
+UPLOADS_DIR = DATA_DIR / "uploads"
 
 def task1_generate_excel():
     """任务1: 从result文件夹提取json文件生成excel对比表"""
@@ -107,7 +107,7 @@ def task1_generate_excel():
     df = df[columns]
 
     # 保存Excel
-    output_file = BASE_DIR / "translation_comparison.xlsx"
+    output_file = DATA_DIR / "translation_comparison.xlsx"
     df.to_excel(output_file, index=False, engine='openpyxl')
 
     print(f"Excel文件已生成: {output_file}")
@@ -168,8 +168,8 @@ def task2_copy_audio_files():
 if __name__ == "__main__":
     # 先删除已存在的Excel（如果被占用则跳过）
     try:
-        if BASE_DIR / "translation_comparison.xlsx":
-            os.remove(BASE_DIR / "translation_comparison.xlsx")
+        if DATA_DIR / "translation_comparison.xlsx":
+            os.remove(DATA_DIR / "translation_comparison.xlsx")
     except:
         pass
 
